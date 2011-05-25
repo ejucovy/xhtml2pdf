@@ -414,7 +414,9 @@ class pisaContext:
     varoius data.
     """
 
-    def __init__(self, path, debug=0, capacity=-1):
+    def __init__(self, path, debug=0, capacity=-1, pagesize=A4):
+        pagesize = pagesize or A4
+
         self.fontList = copy.copy(xhtml2pdf.default.DEFAULT_FONT)
         self.path = []
         self.capacity=capacity
@@ -430,7 +432,7 @@ class pisaContext:
         self.uidctr = 0
         self.multiBuild = False
 
-        self.pageSize = A4
+        self.pageSize = pagesize
         self.template = None
         self.templateList = {}
 
@@ -474,7 +476,7 @@ class pisaContext:
             title="",
             subject="",
             keywords="",
-            pagesize=A4,
+            pagesize=pagesize,
             )
 
     def UID(self):

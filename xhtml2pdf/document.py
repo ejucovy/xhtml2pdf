@@ -67,7 +67,8 @@ def pisaStory(src, path = None, link_callback = None, debug = 0, default_css = N
 
 def pisaDocument(src, dest = None, path = None, link_callback = None, debug = 0,
                  default_css = None, xhtml = False, encoding = None, xml_output = None,
-                 raise_exception = True, capacity = 100 * 1024, **kw):
+                 raise_exception = True, capacity = 100 * 1024, pagesize = None,
+                 **kw):
 
     log.debug("pisaDocument options:\n  src = %r\n  dest = %r\n  path = %r\n  link_callback = %r\n  xhtml = %r",
         src,
@@ -82,7 +83,7 @@ def pisaDocument(src, dest = None, path = None, link_callback = None, debug = 0,
 
     # Build story
     context = pisaStory(src, path, link_callback, debug, default_css, xhtml, encoding, 
-                  context=context, xml_output=xml_output)
+                        context=context, xml_output=xml_output, pagesize=pagesize)
 
     # Buffer PDF into memory
     out = pisaTempFile(capacity=context.capacity)
